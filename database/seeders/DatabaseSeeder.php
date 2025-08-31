@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Doctor;
 use App\Models\Specialization;
 use Illuminate\Database\Seeder;
 
@@ -23,6 +24,11 @@ class DatabaseSeeder extends Seeder
         $specializations = Specialization::factory()
             ->count(count($specializationSequence))
             ->sequence(...$specializationSequence)
+            ->create();
+
+        $doctors = Doctor::factory()
+            ->count(3)
+            ->recycle($specializations)
             ->create();
     }
 }

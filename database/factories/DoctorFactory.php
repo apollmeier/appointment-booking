@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Specialization;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,8 @@ class DoctorFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'specialization_id' => Specialization::factory(),
         ];
     }
 }
