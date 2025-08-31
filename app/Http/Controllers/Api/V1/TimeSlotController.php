@@ -14,7 +14,7 @@ class TimeSlotController extends Controller
      */
     public function index()
     {
-        //
+        return TimeSlotResource::collection(TimeSlot::all());
     }
 
     /**
