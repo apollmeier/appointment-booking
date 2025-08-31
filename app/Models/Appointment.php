@@ -23,6 +23,8 @@ class Appointment extends Model
         'date_time' => 'datetime',
     ];
 
+    protected $with = ['doctor'];
+
     public function doctor(): BelongsTo
     {
         return $this->belongsTo(Doctor::class);

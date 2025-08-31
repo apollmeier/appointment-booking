@@ -24,6 +24,8 @@ class TimeSlot extends Model
         'is_available' => 'boolean',
     ];
 
+    protected $with = ['doctor'];
+
     public function doctor(): BelongsTo
     {
         return $this->belongsTo(Doctor::class);

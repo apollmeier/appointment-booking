@@ -17,6 +17,8 @@ class Doctor extends Model
         'specialization_id'
     ];
 
+    protected $with = ['specialization'];
+
     public function specialization(): BelongsTo
     {
         return $this->belongsTo(Specialization::class);
