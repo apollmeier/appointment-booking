@@ -1,0 +1,15 @@
+meta {
+  name: Get available TimeSlots
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://localhost:8000/api/v1/timeSlots
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}
