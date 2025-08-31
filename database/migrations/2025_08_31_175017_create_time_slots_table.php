@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('time_slots', function (Blueprint $table) {
             $table->id();
             $table->foreignId('doctor_id')->constrained();
-            $table->date('start_time');
-            $table->date('end_time');
+            $table->dateTime('start_time');
+            $table->dateTime('end_time');
             $table->boolean('is_available');
             $table->timestamps();
         });

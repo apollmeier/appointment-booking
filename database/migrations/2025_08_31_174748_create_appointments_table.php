@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('doctor_id')->constrained();
             $table->string('patient_name');
             $table->string('patient_email');
-            $table->date('date_time');
+            $table->dateTime('date_time');
             $table->string('status');
             $table->timestamps();
         });
