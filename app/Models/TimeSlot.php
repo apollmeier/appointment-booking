@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class TimeSlot extends Model
 {
@@ -22,4 +23,9 @@ class TimeSlot extends Model
         'end_time' => 'datetime',
         'is_available' => 'boolean',
     ];
+
+    public function doctor(): BelongsTo
+    {
+        return $this->belongsTo(Doctor::class);
+    }
 }
