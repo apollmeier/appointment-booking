@@ -34,15 +34,13 @@ class AppointmentController extends Controller
             $timeSlot = TimeSlot::where('doctor_id', $requestData['relationships']['doctor']['data']['id'])->where('start_time', $requestData['attributes']['dateTime'])->firstOrFail();
         } catch (ModelNotFoundException $e) {
             return $this->error([
-                'title' => 'Time slot not found',
-                'detail' => "Could not find available time slot with the given date time",
+                'TimeSlot not found.'
             ], 404);
         }
 
         if (!$timeSlot->is_available) {
             return $this->error([
-                'title' => 'Time slot is not available',
-                'detail' => "The selected time slot is not available",
+                'TimeSlot is not available.'
             ], 404);
         }
 
