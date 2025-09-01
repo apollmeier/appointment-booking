@@ -30,8 +30,7 @@ class TimeSlotController extends Controller
             return TimeSlotResource::make(TimeSlot::available()->findOrFail($id));
         } catch (ModelNotFoundException $e) {
             return $this->error([
-                'title' => 'Time slot not found',
-                'detail' => "Could not find available time slot with ID $id",
+                'TimeSlot not found.'
             ], 404);
         }
     }

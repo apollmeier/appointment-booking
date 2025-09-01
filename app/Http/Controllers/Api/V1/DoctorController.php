@@ -29,8 +29,7 @@ class DoctorController extends Controller
             return DoctorResource::make(Doctor::findOrFail($id));
         } catch (ModelNotFoundException $e) {
             return $this->error([
-                'title' => 'Doctor not found',
-                'detail' => "Could not find doctor with ID $id",
+                'Doctor not found.',
             ], 404);
         }
     }

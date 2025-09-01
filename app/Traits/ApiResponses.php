@@ -10,9 +10,9 @@ trait ApiResponses
     {
         return response()->json(
             [
-                'errors' => $errors,
-                'status' => $status
-            ]
+                'message' => $errors[0] . (count($errors) > 1 ? ' (and' . count($errors) - 1 . ' more errors)' : ''),
+                'errors' => $errors
+            ], $status
         );
     }
 }
