@@ -34,12 +34,4 @@ class TimeSlotController extends Controller
             ], 404);
         }
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
 }
