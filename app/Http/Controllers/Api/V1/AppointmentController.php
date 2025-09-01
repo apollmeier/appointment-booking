@@ -70,7 +70,13 @@ class AppointmentController extends Controller
      */
     public function show(string $id)
     {
-        //
+        try {
+            return AppointmentResource::make(Appointment::findOrFail($id));
+        } catch (ModelNotFoundException $e) {
+            return $this->error([
+                'Appointment not found.',
+            ], 404);
+        }
     }
 
     /**
