@@ -42,4 +42,14 @@ class TimeSlot extends Model
     {
         $query->where('is_available', true);
     }
+
+    public function makeAvailable(): void
+    {
+        $this->update(['is_available' => true]);
+    }
+
+    public function makeUnavailable(): void
+    {
+        $this->update(['is_available' => false]);
+    }
 }

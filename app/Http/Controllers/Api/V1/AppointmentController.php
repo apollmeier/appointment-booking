@@ -45,7 +45,7 @@ class AppointmentController extends Controller
             ], 404);
         }
 
-        $timeSlot->update(['is_available' => false]);
+        $timeSlot->makeUnavailable();
 
         $appointment = Appointment::create([
             'doctor_id' => $timeSlot->doctor_id,
@@ -93,7 +93,7 @@ class AppointmentController extends Controller
             ], 404);
         }
 
-        $timeSlot->update(['is_available' => true]);
+        $timeSlot->makeAvailable();
 
         $appointment->update(['status' => AppointmentStatus::CANCELLED]);
 
