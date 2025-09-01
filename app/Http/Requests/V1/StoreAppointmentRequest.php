@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\V1;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -25,7 +25,7 @@ class StoreAppointmentRequest extends FormRequest
             'attributes.patientName' => 'required|string',
             'attributes.patientEmail' => 'required|email',
             'attributes.dateTime' => 'required|after_or_equal:now',
-            'relationships.doctor.data.id' => 'required|exists:doctors,id'
+            'relationships.doctor.data.id' => 'required|index|exists:doctors,id'
         ];
     }
 }
