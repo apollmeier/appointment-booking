@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Enums\AppointmentStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAppointmentRequest;
 use App\Http\Resources\V1\AppointmentResource;
@@ -51,7 +52,7 @@ class AppointmentController extends Controller
             'patient_name' => $requestData['attributes']['patientName'],
             'patient_email' => $requestData['attributes']['patientEmail'],
             'date_time' => $timeSlot->start_time,
-            'status' => 'booked',
+            'status' => AppointmentStatus::BOOKED,
         ]);
 
         return AppointmentResource::make($appointment);
@@ -94,7 +95,7 @@ class AppointmentController extends Controller
 
         $timeSlot->update(['is_available' => true]);
 
-        $appointment->update(['status' => 'cancelled']);
+        $appointment->update(['status' => AppointmentStatus::CANCELLED]);
 
         return $this->success('Appointment cancelled.');
     }
