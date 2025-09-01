@@ -1,0 +1,33 @@
+meta {
+  name: Create Appointment
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8000/api/v1/appointments
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "attributes": {
+      "patientName": "Andre Pollmeier",
+      "patientEmail": "pollmeier.a@gmail.com",
+      "dateTime": "2025-09-02 08:00:00"
+    },
+    "relationships": {
+      "doctor": {
+        "data": {
+          "type": "doctors",
+          "id": 1
+        }
+      }
+    }
+  }
+}
+
+settings {
+  encodeUrl: true
+}
