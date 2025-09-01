@@ -95,7 +95,7 @@ class AppointmentController extends Controller
 
         $timeSlot->makeAvailable();
 
-        $appointment->update(['status' => AppointmentStatus::CANCELLED]);
+        $appointment->cancel();
 
         return $this->success('Appointment cancelled.');
     }
