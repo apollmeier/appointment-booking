@@ -21,11 +21,14 @@ class TimeSlot extends Model
         'is_available',
     ];
 
-    protected $casts = [
-        'start_time' => 'datetime',
-        'end_time' => 'datetime',
-        'is_available' => 'boolean',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'start_time' => 'datetime',
+            'end_time' => 'datetime',
+            'is_available' => 'boolean',
+        ];
+    }
 
     protected $with = ['doctor'];
 
