@@ -26,12 +26,12 @@ class TimeSlotResource extends JsonResource
                 'doctor' => [
                     'type' => 'doctors',
                     'id' => $this->doctor_id,
-                ]
+                ],
             ],
             'includes' => [DoctorResource::make($this->doctor)],
             'links' => [
-                'self' => route('timeSlots.show', $this->id)
-            ]
+                'self' => route('timeSlots.show', $this->id),
+            ],
         ];
     }
 }

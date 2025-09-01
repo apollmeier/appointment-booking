@@ -21,16 +21,16 @@ class AppointmentResource extends JsonResource
                 'patientName' => $this->patient_name,
                 'patientEmail' => $this->patient_email,
                 'dateTime' => $this->date_time,
-                'status' => $this->status
+                'status' => $this->status,
             ],
             'relationships' => [
                 'type' => 'doctors',
-                'id' => $this->doctor_id
+                'id' => $this->doctor_id,
             ],
             'includes' => [DoctorResource::make($this->doctor)],
             'links' => [
-                'self' => route('appointments.show', $this->id)
-            ]
+                'self' => route('appointments.show', $this->id),
+            ],
         ];
     }
 }

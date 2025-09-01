@@ -21,7 +21,7 @@ class SpecializationResource extends JsonResource
                 'name' => $this->name,
                 'createdAt' => $this->created_at,
                 'updateAt' => $this->updated_at,
-            ]
+            ],
         ];
     }
 }

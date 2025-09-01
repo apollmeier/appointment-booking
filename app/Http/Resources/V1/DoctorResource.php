@@ -26,14 +26,14 @@ class DoctorResource extends JsonResource
                 'specialization' => [
                     'data' => [
                         'type' => 'specializations',
-                        'id' => $this->specialization_id
-                    ]
-                ]
+                        'id' => $this->specialization_id,
+                    ],
+                ],
             ],
             'includes' => $this->when($request->routeIs('doctors.*'), [SpecializationResource::make($this->specialization)]),
             'links' => [
-                'self' => route('doctors.show', $this->id)
-            ]
+                'self' => route('doctors.show', $this->id),
+            ],
         ];
     }
 }

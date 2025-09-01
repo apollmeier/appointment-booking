@@ -14,7 +14,7 @@ class Doctor extends Model
 
     protected $fillable = [
         'name',
-        'specialization_id'
+        'specialization_id',
     ];
 
     protected $with = ['specialization'];

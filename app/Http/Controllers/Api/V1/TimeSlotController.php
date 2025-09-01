@@ -7,7 +7,6 @@ use App\Http\Resources\V1\TimeSlotResource;
 use App\Models\TimeSlot;
 use App\Traits\ApiResponses;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Http\Request;
 
 class TimeSlotController extends Controller
 {
@@ -30,7 +29,7 @@ class TimeSlotController extends Controller
             return TimeSlotResource::make(TimeSlot::available()->findOrFail($id));
         } catch (ModelNotFoundException $e) {
             return $this->error([
-                'TimeSlot not found.'
+                'TimeSlot not found.',
             ], 404);
         }
     }

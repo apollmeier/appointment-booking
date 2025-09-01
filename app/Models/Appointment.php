@@ -17,14 +17,14 @@ class Appointment extends Model
         'patient_name',
         'patient_email',
         'date_time',
-        'status'
+        'status',
     ];
 
     protected function casts(): array
     {
         return [
             'date_time' => 'datetime',
-            'status' => AppointmentStatus::class
+            'status' => AppointmentStatus::class,
         ];
     }
 

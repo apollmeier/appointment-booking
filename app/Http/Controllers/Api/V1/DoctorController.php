@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\DoctorResource;
 use App\Models\Doctor;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Traits\ApiResponses;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class DoctorController extends Controller
 {

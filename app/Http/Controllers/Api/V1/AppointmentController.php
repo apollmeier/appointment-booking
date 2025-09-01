@@ -32,13 +32,13 @@ class AppointmentController extends Controller
             $timeSlot = TimeSlot::where('doctor_id', $request->input('relationships.doctor.data.id'))->where('start_time', $request->input('attributes.dateTime'))->firstOrFail();
         } catch (ModelNotFoundException $e) {
             return $this->error([
-                'TimeSlot not found.'
+                'TimeSlot not found.',
             ], 404);
         }
 
-        if (!$timeSlot->is_available) {
+        if (! $timeSlot->is_available) {
             return $this->error([
-                'TimeSlot is not available.'
+                'TimeSlot is not available.',
             ], 404);
         }
 
@@ -78,7 +78,7 @@ class AppointmentController extends Controller
             $appointment = Appointment::findOrFail($id);
         } catch (ModelNotFoundException $e) {
             return $this->error([
-                'Appointment not found.'
+                'Appointment not found.',
             ], 404);
         }
 
@@ -86,7 +86,7 @@ class AppointmentController extends Controller
             $timeSlot = TimeSlot::where('doctor_id', $appointment->doctor_id)->where('start_time', $appointment->date_time)->firstOrFail();
         } catch (ModelNotFoundException $e) {
             return $this->error([
-                'TimeSlot not found.'
+                'TimeSlot not found.',
             ], 404);
         }
 

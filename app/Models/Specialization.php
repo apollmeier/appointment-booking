@@ -12,7 +12,7 @@ class Specialization extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'name',
     ];
 
     public function doctors(): HasMany
