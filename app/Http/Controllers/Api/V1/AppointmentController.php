@@ -10,7 +10,6 @@ use App\Models\Appointment;
 use App\Models\TimeSlot;
 use App\Traits\ApiResponses;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
 {
@@ -29,10 +28,8 @@ class AppointmentController extends Controller
      */
     public function store(StoreAppointmentRequest $request)
     {
-        $requestData = $request->all();
-
         try {
-            $timeSlot = TimeSlot::where('doctor_id', $requestData['relationships']['doctor']['data']['id'])->where('start_time', $requestData['attributes']['dateTime'])->firstOrFail();
+            $timeSlot = TimeSlot::where('doctor_id', $request->input('relationships.doctor.data.id'))->where('start_time', $request->input('attributes.dateTime'))->firstOrFail();
         } catch (ModelNotFoundException $e) {
             return $this->error([
                 'TimeSlot not found.'
@@ -49,8 +46,8 @@ class AppointmentController extends Controller
 
         $appointment = Appointment::create([
             'doctor_id' => $timeSlot->doctor_id,
-            'patient_name' => $requestData['attributes']['patientName'],
-            'patient_email' => $requestData['attributes']['patientEmail'],
+            'patient_name' => $request->input('attributes.patientName'),
+            'patient_email' => $request->input('attributes.patientEmail'),
             'date_time' => $timeSlot->start_time,
             'status' => AppointmentStatus::BOOKED,
         ]);
