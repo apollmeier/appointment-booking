@@ -78,6 +78,26 @@ class AppointmentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $appointment = Appointment::findOrFail($id);
+        } catch (ModelNotFoundException $e) {
+            return $this->error([
+                'Appointment not found.'
+            ], 404);
+        }
+
+        try {
+            $timeSlot = TimeSlot::where('doctor_id', $appointment->doctor_id)->where('start_time', $appointment->date_time)->firstOrFail();
+        } catch (ModelNotFoundException $e) {
+            return $this->error([
+                'TimeSlot not found.'
+            ], 404);
+        }
+
+        $timeSlot->update(['is_available' => true]);
+
+        $appointment->update(['status' => 'cancelled']);
+
+        return $this->success('Appointment cancelled.');
     }
 }
