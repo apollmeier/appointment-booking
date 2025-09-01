@@ -8,4 +8,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::apiResource('doctors', DoctorController::class)->only(['index', 'show']);
 Route::apiResource('timeSlots', TimeSlotController::class)->except(['store', 'destroy']);
-Route::apiResource('appointments', AppointmentController::class);
+Route::apiResource('appointments', AppointmentController::class)->except(['update']);
