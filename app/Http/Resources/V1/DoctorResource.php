@@ -30,7 +30,7 @@ class DoctorResource extends JsonResource
                     ]
                 ]
             ],
-            'includes' => $this->when($request->routeIs('doctors.*'), SpecializationResource::make($this->specialization)),
+            'includes' => $this->when($request->routeIs('doctors.*'), [SpecializationResource::make($this->specialization)]),
             'links' => [
                 'self' => route('doctors.show', $this->id)
             ]
