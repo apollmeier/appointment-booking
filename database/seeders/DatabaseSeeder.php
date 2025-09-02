@@ -29,31 +29,18 @@ class DatabaseSeeder extends Seeder
             ->create();
 
         $doctors = Doctor::factory()
-            ->count(3)
+            ->count(2)
             ->recycle($specializations)
             ->create();
 
-        $timeSlots = collect();
         foreach ($doctors as $doctor) {
-            for ($dayOffset = 0; $dayOffset < 2; $dayOffset++) {
-                $date = Carbon::today()->addDays($dayOffset);
-
-                for ($hour = 8; $hour < 17; $hour++) {
-                    if ($hour == 12) {
-                        continue;
-                    }
-
-                    $startTime = $date->copy()->setTime($hour, '0');
-                    $endTime = $startTime->copy()->addHour();
-
-                    $timeSlots->push(TimeSlot::factory()->create([
-                        'doctor_id' => $doctor->id,
-                        'start_time' => $startTime,
-                        'end_time' => $endTime,
-                        'is_available' => true,
-                    ]));
-                }
-            }
+            TimeSlot::factory()
+                ->forDaySchedule(Carbon::tomorrow())
+                ->state([
+                    'doctor_id' => $doctor->id,
+                    'is_available' => true,
+                ])
+                ->create();
         }
     }
 }
