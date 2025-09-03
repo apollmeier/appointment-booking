@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
 
         foreach ($doctors as $doctor) {
             TimeSlot::factory()
-                ->forDaySchedule(Carbon::tomorrow())
+                ->forDaySchedule(Carbon::create(2025, 10, 01))
                 ->state([
                     'doctor_id' => $doctor->id,
                     'is_available' => true,
