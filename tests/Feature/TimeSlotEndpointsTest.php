@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\TimeSlot;
+
 use function Pest\Laravel\get;
 use function Pest\Laravel\getJson;
 
@@ -67,7 +68,7 @@ describe('the timeslot show endpoint', function () {
 
     test('responds with 404 when the timeslot is unavailable', function () {
         $timeSlot = TimeSlot::factory()->create([
-            'is_available' => false
+            'is_available' => false,
         ]);
 
         get(route('timeSlots.show', $timeSlot->id))
@@ -94,4 +95,3 @@ describe('the timeslot show endpoint', function () {
             ]);
     });
 });
-

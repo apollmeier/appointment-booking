@@ -32,7 +32,7 @@ class TimeSlotFactory extends Factory
     /**
      * Create daily time slots from 9 AM to 5 PM (8 hourly slots).
      *
-     * @param Carbon $date The date for the time slots (defaults to today)
+     * @param  Carbon  $date  The date for the time slots (defaults to today)
      * @return $this
      */
     public function forDaySchedule(Carbon $date): static

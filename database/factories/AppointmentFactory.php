@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Enums\AppointmentStatus;
-use App\Models\Appointment;
 use App\Models\Doctor;
 use Illuminate\Database\Eloquent\Factories\Factory;
 

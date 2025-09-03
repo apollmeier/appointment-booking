@@ -27,7 +27,7 @@ class AppointmentResource extends JsonResource
                 'doctor' => [
                     'type' => 'doctors',
                     'id' => $this->doctor_id,
-                ]
+                ],
             ],
             'includes' => [DoctorResource::make($this->doctor)],
             'links' => [

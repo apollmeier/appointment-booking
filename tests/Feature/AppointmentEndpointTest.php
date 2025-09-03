@@ -2,6 +2,7 @@
 
 use App\Models\Appointment;
 use App\Models\TimeSlot;
+
 use function Pest\Laravel\deleteJson;
 use function Pest\Laravel\get;
 use function Pest\Laravel\getJson;
@@ -56,9 +57,9 @@ describe('the appointment index endpoint', function () {
                     'data' => [
                         'type' => 'doctors',
                         'id' => $timeSlot->doctor_id,
-                    ]
-                ]
-            ]
+                    ],
+                ],
+            ],
         ];
 
         postJson(route('appointments.store'), $payload)
@@ -83,9 +84,9 @@ describe('the appointment index endpoint', function () {
                     'data' => [
                         'type' => 'doctors',
                         'id' => $timeSlot->doctor_id,
-                    ]
-                ]
-            ]
+                    ],
+                ],
+            ],
         ];
 
         postJson(route('appointments.store'), $payload)
@@ -106,9 +107,9 @@ describe('the appointment index endpoint', function () {
                     'data' => [
                         'type' => 'doctors',
                         'id' => $timeSlot->doctor_id,
-                    ]
-                ]
-            ]
+                    ],
+                ],
+            ],
         ];
 
         postJson(route('appointments.store'), $payload)
@@ -129,9 +130,9 @@ describe('the appointment index endpoint', function () {
                     'data' => [
                         'type' => 'doctors',
                         'id' => $timeSlot->doctor_id,
-                    ]
-                ]
-            ]
+                    ],
+                ],
+            ],
         ];
 
         $appointment = postJson(route('appointments.store'), $payload)->json('data');
@@ -172,7 +173,7 @@ describe('the appointment show endpoint', function () {
                     ],
                     'includes',
                     'links' => ['self'],
-                ]
+                ],
             ]);
     });
 });
