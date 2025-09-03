@@ -6,11 +6,15 @@ use App\Enums\AppointmentStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\StoreAppointmentRequest;
 use App\Http\Resources\V1\AppointmentResource;
+use App\Mail\AppointmentBooked;
+use App\Mail\AppointmentCancelled;
 use App\Models\Appointment;
+use App\Models\Doctor;
 use App\Models\TimeSlot;
 use App\Traits\ApiResponses;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Mail;
 
 class AppointmentController extends Controller
 {
@@ -55,6 +59,8 @@ class AppointmentController extends Controller
             'status' => AppointmentStatus::BOOKED,
         ]);
 
+        Mail::to($appointment->patient_email)->send(new AppointmentBooked($appointment, Doctor::find($appointment->doctor_id)));
+
         return AppointmentResource::make($appointment);
     }
 
@@ -96,6 +102,8 @@ class AppointmentController extends Controller
         $timeSlot->makeAvailable();
 
         $appointment->cancel();
+
+        Mail::to($appointment->patient_email)->send(new AppointmentCancelled($appointment, Doctor::find($appointment->doctor_id)));
 
         return $this->success('Appointment cancelled.');
     }
