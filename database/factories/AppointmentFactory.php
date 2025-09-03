@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Enums\AppointmentStatus;
+use App\Models\Appointment;
+use App\Models\Doctor;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +20,11 @@ class AppointmentFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'doctor_id' => Doctor::factory(),
+            'patient_name' => $this->faker->name(),
+            'patient_email' => $this->faker->unique()->safeEmail(),
+            'date_time' => $this->faker->dateTime(),
+            'status' => $this->faker->randomElement([AppointmentStatus::BOOKED, AppointmentStatus::CANCELLED]),
         ];
     }
 }
