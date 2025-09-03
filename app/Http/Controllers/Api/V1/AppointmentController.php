@@ -9,6 +9,7 @@ use App\Http\Resources\V1\AppointmentResource;
 use App\Models\Appointment;
 use App\Models\TimeSlot;
 use App\Traits\ApiResponses;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class AppointmentController extends Controller
@@ -28,8 +29,10 @@ class AppointmentController extends Controller
      */
     public function store(StoreAppointmentRequest $request)
     {
+        $dateTime = Carbon::parse($request->input('attributes.dateTime'));
+
         try {
-            $timeSlot = TimeSlot::where('doctor_id', $request->input('relationships.doctor.data.id'))->where('start_time', $request->input('attributes.dateTime'))->firstOrFail();
+            $timeSlot = TimeSlot::where('doctor_id', $request->input('relationships.doctor.data.id'))->where('start_time', $dateTime)->firstOrFail();
         } catch (ModelNotFoundException $e) {
             return $this->error([
                 'TimeSlot not found.',
