@@ -39,7 +39,7 @@ class AppointmentController extends Controller
         if (! $timeSlot->is_available) {
             return $this->error([
                 'TimeSlot is not available.',
-            ], 404);
+            ], 409);
         }
 
         $timeSlot->makeUnavailable();
